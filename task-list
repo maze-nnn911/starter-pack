@@ -8,12 +8,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lateef:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
     <style>
         body{
             background-color: rgb(6, 50, 87);
-            font-family: "Lateef", serif
+            font-family: "Lateef", serif;
         }
        
         .material-symbols-outlined {
@@ -263,7 +263,7 @@
 
     let tasks = [
         /*tasks below can be removed not to apper in starting page by force (but do NOT remove the variable name)*/
-        /*      
+              
             {
                 "title":"المشروع النهائى",
                 "date":"20/10/2025",
@@ -280,9 +280,17 @@
                 "date":"20/10/2025",
                 "isDone":false
             }
-        */     
+            
 
     ]
+
+    let retrievedTasks = JSON.parse(localStorage.getItem("tasks"))
+    if(retrievedTasks == null){
+        tasks = []
+    }else{
+        tasks=retrievedTasks
+    }
+
     function FillTasksOnThePage(){
 
         document.getElementById("tasks").innerHTML=""
@@ -368,14 +376,17 @@
         }
 
         tasks.push(TaskObj)
+
+        storeTasks()
         FillTasksOnThePage()
     })
 
     function deletetask(index){
         let task = tasks[index]
-        let isConfirmed= confirm(`Are you sure of DELETING `+ task.title)
+        let isConfirmed= confirm(`هل انت متأكد من حذف مهمة `+ task.title)
         if(isConfirmed == true){
             tasks.splice(index,1)
+            storeTasks()
             FillTasksOnThePage()
         }
     }
@@ -384,14 +395,24 @@
         let task = tasks[index]
         let newTaskTitle = prompt("برجاء ادخال عنوان المهمة الجديد" , task.title )
         task.title = newTaskTitle
+        storeTasks()
         FillTasksOnThePage()
     }
 
     function taskcompletion(index){
     let task = tasks[index]
     task.isDone =! task.isDone
+    storeTasks()
     FillTasksOnThePage()
     }
+
+
+//========Function storage
+function storeTasks(){
+    let tasksString = JSON.stringify(tasks)
+    localStorage.setItem("tasks",tasksString)
+}
+
 
 </script>
 </html>
