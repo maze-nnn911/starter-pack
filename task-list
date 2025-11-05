@@ -75,7 +75,7 @@
                 
                 <!-- HEADER-->
                 <div style="width: 100%; text-align: center; color: white; padding-top: 8px; padding-bottom: 8px; background-color: blueviolet;">
-                    <H1 style="display: inline;">Main Goals</H1>
+                    <H1 style="display: inline;">My To-Do-List</H1>
                     <button id="add-btn" class="circular" style="float: right; margin-right: 10px;">
                     <span class="material-symbols-outlined">
                         add
