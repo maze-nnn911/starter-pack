@@ -264,24 +264,7 @@
     let tasks = [
         /*tasks below can be removed not to apper in starting page by force (but do NOT remove the variable name)*/
               
-            {
-                "title":"المشروع النهائى",
-                "date":"20/10/2025",
-                "isDone":false
-            },
-            {
-                "title":"كورس الجافا سكريبت",
-                "date":"20/10/2025",
-                "isDone":false
-            },
-        
-            {
-                "title":"حجز الكورة",
-                "date":"20/10/2025",
-                "isDone":false
-            }
-            
-
+           
     ]
 
     let retrievedTasks = JSON.parse(localStorage.getItem("tasks"))
@@ -367,7 +350,7 @@
 
         let now = new Date()
         let date = now.getDate() + "/" + (now.getMonth()+1) + "/" + now.getFullYear() +"|" + now.getHours() +":" + now.getMinutes()
-        let TaskName = prompt("برجاء ادخال اسم التاسك")
+        let TaskName = prompt("Insert Task name Please")
         
         let TaskObj = {
             "title": TaskName ,
@@ -383,7 +366,7 @@
 
     function deletetask(index){
         let task = tasks[index]
-        let isConfirmed= confirm(`هل انت متأكد من حذف مهمة `+ task.title)
+        let isConfirmed= confirm(`Are you sure of Deleting `+ task.title)
         if(isConfirmed == true){
             tasks.splice(index,1)
             storeTasks()
@@ -393,7 +376,7 @@
    
     function edittask(index){
         let task = tasks[index]
-        let newTaskTitle = prompt("برجاء ادخال عنوان المهمة الجديد" , task.title )
+        let newTaskTitle = prompt("Insert your new Task name" , task.title )
         task.title = newTaskTitle
         storeTasks()
         FillTasksOnThePage()
